@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { UserContext } from '../context/userContext'
-import FormInput from './FormInput'
+import { UserContext } from '../../context/userContext'
+import FormInput from '../shared/Form'
 
 export default function Register() {
   const userCtx = useContext(UserContext)

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import '../styles.css'
-import { AppContext } from '../context/globalContext'
-import { UserContext } from '../context/userContext'
+import { AppContext } from '../../context/globalContext'
+import { UserContext } from '../../context/userContext'
 import { Link } from 'react-router-dom'
 
 export default function Home() {

@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react'
-import { UserContext } from '../context/userContext'
+import { UserContext } from '../../context/userContext'
 import { useNavigate } from 'react-router-dom'
-import FormInput from './FormInput'
+import FormInput from '../shared/Form'
 
 export default function Login() {
   const userCtx = useContext(UserContext)

@@ -1,11 +1,11 @@
 import './styles.css'
 import { Routes, Route } from 'react-router-dom'
-import Home from './Components/Home'
+import Home from './Components/pages/Home'
 import Historial from './Components/Historial'
-import Header from './Components/Header'
-import Register from './Components/Register'
-import Login from './Components/Login'
-import PrivateRoute from './Components/Auth/PrivateRoute'
+import Header from './Components/shared/Header'
+import Register from './Components/pages/Register'
+import Login from './Components/pages/Login'
+import PrivateRoute from './Components/auth/PrivateRoute'
 
 function App() {
   return (

@@ -3,13 +3,16 @@ import clienteAxios from '../config/axios'
 export const UserContext = createContext()
 
 export const UserProvider = ({ children }) => {
+
   const [user, setUser] = useState({ username: null, email: null })
   const [authStatus, setAuthStatus] = useState(false)
-
+  const [success, setSuccess] = useState(false)
+  const [error, setError] = useState(false)
   const [formData, setFormData] = useState({
-    username: '',
+    name: '',
     email: '',
     password: '',
+
   })
 
   const handleChange = (event) => {
@@ -22,9 +25,26 @@ export const UserProvider = ({ children }) => {
 
   const registerUser = async (dataForm) => {
     try {
-      const res = await clienteAxios.post('/usuario/crear', dataForm)
-      localStorage.setItem('token', res.data.token)
-      setAuthStatus(true)
+      const res = await clienteAxios.post('/customers/signup', dataForm)
+      // localStorage.setItem('token', res.data.token)
+      // setAuthStatus(true)
+      setSuccess(true)
+    } catch (error) {
+      console.log(error)
+      setError(false)
+    }
+  }
+
+  const updateUser = async (id, dataForm)=>{
+    const form = {
+      id,
+      name : dataForm.name,
+      email : dataForm.email
+    }
+    try {
+      const res = await clienteAxios.put('/customers/update', form)
+      verifyingToken()
+
     } catch (error) {
       console.log(error)
     }
@@ -40,7 +60,7 @@ export const UserProvider = ({ children }) => {
     }
 
     try {
-      const res = token && (await clienteAxios.get('/usuario/verificar'))
+      const res = token && (await clienteAxios.get('/customers/verify'))
       setUser(res.data)
       setAuthStatus(true)
     } catch (error) {
@@ -50,7 +70,7 @@ export const UserProvider = ({ children }) => {
 
   const loginUser = async (dataForm) => {
     try {
-      const res = await clienteAxios.post('/usuario/login', dataForm)
+      const res = await clienteAxios.post('/customers/login', dataForm)
       localStorage.setItem('token', res.data.token)
       setAuthStatus(true)
     } catch (error) {
@@ -64,7 +84,24 @@ export const UserProvider = ({ children }) => {
     setAuthStatus(false)
   }
 
-  const data = { registerUser, loginUser, handleChange, verifyingToken, logout, formData, user, authStatus }
-  console.log('CONTEXTO USUARIO', data)
+
+  const data = {
+    registerUser, 
+    loginUser, 
+    handleChange, 
+    verifyingToken, 
+    logout, 
+    formData, 
+    user, 
+    authStatus, 
+    success,
+    error,
+    setSuccess,
+    setError,
+    setUser,
+    updateUser,
+  }
+  console.log('User Context', data)
   return <UserContext.Provider value={data}>{children}</UserContext.Provider>
 }
+

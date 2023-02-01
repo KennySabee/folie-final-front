@@ -1,14 +1,15 @@
 import React, { useContext } from 'react'
-import { UserContext } from '../context/userContext'
+// import '../../App.css';
+import { UserContext } from './../../context/userContext'
 
-export default function FormInput({ tipo }) {
+function Form({ tipo }) {
   const userCtx = useContext(UserContext)
 
   const { handleChange } = userCtx
 
   const options = {
-    username: { titulo: 'Nombre de usuario', type: 'text' },
-    email: { titulo: 'Direccion de E-Mail', type: 'mail' },
+    name: { titulo: 'Nombre de usuario', type: 'text' },
+    email: { titulo: 'Direccion de correo electronico', type: 'email' },
     password: { titulo: 'Contraseña', type: 'password' },
   }
 
@@ -29,3 +30,4 @@ export default function FormInput({ tipo }) {
     </>
   )
 }
+export default Form

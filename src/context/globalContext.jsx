@@ -1,62 +1,50 @@
-import { useState, createContext } from 'react'
+import { useState, createContext } from 'react';
 import clienteAxios from '../config/axios'
+
 export const AppContext = createContext()
 
 export const AppProvider = ({ children }) => {
-  const [newBalance, setNewBalance] = useState()
-  const [balance, setBalance] = useState()
+  const [product, setProduct] = useState()
   const [success, setSuccess] = useState(false)
-  const [error, setError] = useState(false)
+  const [ok, setOk] = useState(false)
+  const [oneProduct, setOneProduct] = useState({})
 
-  const createBalance = async (dataForm) => {
-    const form = {
-      descripcion: dataForm.descripcion,
-      monto: dataForm.monto,
-      tipo: dataForm.tipo,
-    }
-
+  const getProduct = async () => {
     try {
-      await clienteAxios.post(`/balance/nuevo`, form)
+      const res = await clienteAxios.get('/products/list')
+      setProduct(res.data.Products)
       setSuccess(true)
+
     } catch (error) {
-      setError(true)
       console.log(error)
     }
   }
 
-  const getBalance = async () => {
+  const getId = async (customerId) => {
     try {
-      const res = await clienteAxios.get(`/balance/obtener`)
-      setBalance(res.data.balance)
+      const res = await clienteAxios.get(`/products/list/${customerId}`)
+      setOneProduct(res.data)
+      setOk(true)
     } catch (error) {
       console.log(error)
     }
   }
 
-  const deleteBalance = async (id) => {
-    const data = { id }
-
-    try {
-      await clienteAxios.delete(`/balance/borrar`, { data })
-      getBalance()
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   const data = {
-    createBalance,
-    getBalance,
-    balance,
-    setBalance,
-    newBalance,
-    setNewBalance,
+    product,
+    setProduct,
+    getProduct,
     success,
-    error,
     setSuccess,
-    setError,
-    deleteBalance,
+    getId,
+    oneProduct,
+    setOneProduct,
+    ok, 
+    setOk,
+
   }
-  console.log('CONTEXTO', data)
+
+  console.log('Contexto', data)
   return <AppContext.Provider value={data}>{children}</AppContext.Provider>
 }
