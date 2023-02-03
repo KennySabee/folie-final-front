@@ -1,5 +1,6 @@
 import React from 'react'
 import '../../App.css';
+import fbLogo from './../../assets/fb-logo.png'
 
 function Footer() {
   return (
@@ -7,7 +8,9 @@ function Footer() {
      <div className="gridfooter-container">
             <div className="griditem-1">
                 <a href="">
-                  {/* <img src="" alt="facebook" className="social-icons"> */}
+                    {/* <img src="" alt="instagram" className="social-icons"> */}
+                    <img src={fbLogo} alt="instagram" className="social-icons"></img>
+                
                 </a>
                 <a href="">
                     {/* <img src="" alt="instagram" className="social-icons"> */}
@@ -52,7 +55,7 @@ function Footer() {
                 </ul>
             </div>
             <div className="griditem-6">
-                <p>© 2022 Karen Valier. Todos los derechos reservados. Esta es una página de aterrizaje ficticia para fines académicos.</p>
+                <p>© 2022 Kenny Merizalde. Todos los derechos reservados. </p>
             </div>
         </div>
     </>

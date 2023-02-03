@@ -1,9 +1,10 @@
-import React, { useEffect, useContext } from 'react'
-import { UserContext } from '../../context/userContext'
-import { useNavigate } from 'react-router-dom'
-import FormInput from '../shared/Form'
+import React, { useContext, useEffect } from 'react'
+import '../../App.css';
+import { useNavigate, Navigate, Link} from 'react-router-dom'
+import { UserContext } from './../../context/userContext'
+import Form from './../shared/Form'
 
-export default function Login() {
+function Login() {
   const userCtx = useContext(UserContext)
   const { loginUser, authStatus, verifyingToken, formData } = userCtx
 
@@ -13,7 +14,7 @@ export default function Login() {
     verifyingToken()
 
     if (authStatus) {
-      navigate('/')
+      navigate('/profile')
     }
   }, [authStatus])
 
@@ -24,17 +25,25 @@ export default function Login() {
     loginUser(formData)
   }
 
-  return (
-    <div className='container'>
-      <h2>Iniciar sesión</h2>
+  const onNavigate = (history, locationDescriptor)=>history.replace(locationDescriptor)
 
-      <form onSubmit={(e) => sendData(e)}>
-        <FormInput tipo='email' />
-        <FormInput tipo='password' />
-        <button type='submit' className='btn btn-primary mt-3'>
-          Comenzar
-        </button>
-      </form>
+  return (
+    <div className='center-container'>
+      <div className='form-container'>
+        <h2>Iniciar sesión</h2>
+        <form onSubmit={(e) => sendData(e)}>
+          <Form tipo='email' />
+          <Form tipo='password' />
+          <button type='submit' className=''>
+            Comenzar
+          </button>
+        </form>
+        <span>No eres un miembro todavía?</span>
+        <Link to='/register' className='link-item link-pop' replace>Regístrate</Link>
+      </div>
     </div>
+
   )
 }
+
+export default Login

@@ -1,30 +1,48 @@
 import React, { useContext } from 'react'
-import { UserContext } from '../../context/userContext'
-import FormInput from '../shared/Form'
+import '../../App.css';
+import { UserContext } from './../../context/userContext'
+import Form from './../shared/Form'
 
-export default function Register() {
-  const userCtx = useContext(UserContext)
 
-  const { registerUser, formData } = userCtx
+function Register() {
+    const userCtx = useContext(UserContext)
 
-  const sendData = (event) => {
-    event.preventDefault()
-    registerUser(formData)
-  }
+    const { registerUser, formData, setFormData, success, error, setError, setSuccess } = userCtx
 
-  return (
-    <div className='container'>
-      <h2>Crear cuenta</h2>
+    const sendData = (event) => {
+        event.preventDefault()
+        registerUser(formData)
+        event.target.reset();
+    }
 
-      <form onSubmit={(e) => sendData(e)}>
-        <FormInput tipo='username' />
-        <FormInput tipo='email' />
-        <FormInput tipo='password' />
 
-        <button type='submit' className='btn btn-primary mt-3'>
-          Registrarme
-        </button>
-      </form>
-    </div>
-  )
+    return (
+        <div className='center-container'>
+            <div className='form-container'>
+                <h2>Crear cuenta</h2>
+
+                <form onSubmit={(e) => sendData(e)}>
+                    <Form tipo='name' />
+                    <Form tipo='email' />
+                    <Form tipo='password' />
+
+                    <button type='submit'>
+                        Registrarme
+                    </button>
+                </form>
+                {success && (
+                    <div className='alert alert-success m4' role='alert'>
+                        Se registro usuario con exito
+                    </div>
+                )}
+                {error && (
+                    <div className='alert alert-danger m4' role='alert'>
+                        Hubo un error creando usuario
+                    </div>
+                )}
+            </div>
+        </div>
+    )
 }
+
+export default Register

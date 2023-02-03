@@ -1,29 +1,48 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { UserContext } from '../../context/userContext'
+import '../../App.css';
+import logo from './../../assets/logo-folie-caranegra.png'
+import shopcart from './../../assets/shopping-cart.png'
+import { UserContext } from './../../context/userContext'
 
-export default function Header() {
+function Header() {
   const ctx = useContext(UserContext)
-
   const { logout, authStatus } = ctx
-
   return (
-    <div className='d-flex justify-content-around my-4'>
-      <Link to='/'>Inicio</Link>
+    <>
+      <header>
+        <nav className='nav-menu'>
+          <Link to='/'><img src={logo} alt="logo" id='logo' /></Link>
+          <ul className='ul-list'>
+            <li>
+              <Link to='/catalog' className='link-item'>Productos</Link>
+            </li>
+            {authStatus ? (
+              <>
+                <Link to='/profile' className='link-item'>Profile</Link>
+                <Link to='/' onClick={logout} className='link-item'>Cerrar sesión</Link>
+              </>
+            )
 
-      {authStatus ? (
-        <>
-          <Link to='/' onClick={logout}>
-            Cerrar sesión
-          </Link>
-        </>
-      ) : (
-        <>
-          <Link to='/registro'>Registro</Link>
+              : (<>
+                <li>
+                  <Link to='/login' className='link-item'>Login</Link>
+                </li>
+                <li>
+                  <Link to='/register' className='link-item btn-border'>Sign up</Link>
+                </li>
+              </>)}
 
-          <Link to='/login'>Iniciar sesión</Link>
-        </>
-      )}
-    </div>
+            <li>
+              <Link to='/checkout'><img src={shopcart} alt="chcar" id='checkoutcar' className='icons' /></Link>
+            </li>
+          </ul>
+
+
+        </nav>
+      </header>
+    </>
   )
 }
+
+export default Header
