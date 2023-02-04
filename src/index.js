@@ -7,15 +7,23 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { AppProvider } from "./context/globalContext";
 import { UserProvider } from "./context/userContext";
+import { CartProvider } from "./context/cartProvider";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <UserProvider>
       <AppProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <CartProvider>
+          <BrowserRouter>
+            <PayPalScriptProvider
+              option={{ "client-id": process.env.PAYPAL_CLIENT_ID }}
+            >
+              <App />
+            </PayPalScriptProvider>
+          </BrowserRouter>
+        </CartProvider>
       </AppProvider>
     </UserProvider>
   </React.StrictMode>

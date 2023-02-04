@@ -7,7 +7,7 @@ import Form from './../shared/Form'
 function Register() {
     const userCtx = useContext(UserContext)
 
-    const { registerUser, formData, setFormData, success, error, setError, setSuccess } = userCtx
+    const { registerUser, formData, success, error } = userCtx
 
     const sendData = (event) => {
         event.preventDefault()

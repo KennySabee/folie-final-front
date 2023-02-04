@@ -1,11 +1,10 @@
 import React, { useContext } from 'react'
-// import '../../App.css';
-import { UserContext } from './../../context/userContext'
+import '../../App.css';
+import { UserContext } from '../../context/userContext'
 
-function Form({ tipo }) {
+function FormInput({ tipo, value}) {
   const userCtx = useContext(UserContext)
-
-  const { handleChange } = userCtx
+  const { handleChange, editMode, handleChangeUpdate } = userCtx
 
   const options = {
     name: { titulo: 'Nombre de usuario', type: 'text' },
@@ -22,12 +21,13 @@ function Form({ tipo }) {
           name={tipo}
           type={options[tipo].type}
           required
-          onChange={(e) => {
-            handleChange(e)
-          }}
+          value = {value}
+          onChange={editMode ? (e) => handleChangeUpdate(e):
+            (e) => handleChange(e)
+          }
         />
       </div>
     </>
   )
 }
-export default Form
+export default FormInput

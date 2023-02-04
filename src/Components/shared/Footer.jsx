@@ -8,19 +8,11 @@ function Footer() {
      <div className="gridfooter-container">
             <div className="griditem-1">
                 <a href="">
-                    {/* <img src="" alt="instagram" className="social-icons"> */}
-                    <img src={fbLogo} alt="instagram" className="social-icons"></img>
+                    {/* no me aparece la imagen? */}
+                    {/* <img src={fbLogo} alt="instagram" className="social-icons"></img> */}
                 
                 </a>
-                <a href="">
-                    {/* <img src="" alt="instagram" className="social-icons"> */}
-                 </a>
-                 <a href="">
-                    {/* <img src="" alt="twitter" className="social-icons"> */}
-                </a>
-                <a href="">
-                    {/* <img src="" alt="github" className="social-icons"> */}
-                </a>
+               
             </div>
             <div className="griditem-2">
                 <h4 className="title-links">PRODUCTOS</h4>
@@ -29,23 +21,22 @@ function Footer() {
                 </a>
             </div>
             <div className="griditem-3">
+                <h4 className="title-links">NOSOTROS</h4>
+                <ul className="footer-list">
+                    <li><a href="" className="footer-links">Acerca de</a> </li>
+                    <li><a href="" className="footer-links">Blog</a></li>                   
+                    <li><a href="" className="footer-links">Contacto</a></li>
+                </ul>
+            </div>
+            <div className="griditem-4">
                 <h4 className="title-links">SOPORTE</h4>
                 <ul className="footer-list">
                     <li><a href="" className="footer-links">Precios y cotizaciones</a> </li>
                     <li><a href="" className="footer-links">FAQ</a></li>
-                    <li><a href="" className="footer-links">Guías</a></li>
+                    <li><a href="" className="footer-links">Alianzas</a></li>
                 </ul>
             </div>
-            <div className="griditem-4">
-                <h4 className="title-links">NOSOTROS</h4>
-                <ul className="footer-list">
-                    <li><a href="" className="footer-links">Acerca de</a> </li>
-                    <li><a href="" className="footer-links">Blog</a></li>
-                    <li><a href="" className="footer-links">Trabajos</a></li>
-                    <li><a href="" className="footer-links">Prensa</a></li>
-                    <li><a href="" className="footer-links">Socios</a></li>
-                </ul>
-            </div>
+           
             <div className="griditem-5">
                 <h4 className="title-links">LEGAL</h4>
                 <ul className="footer-list">
@@ -55,7 +46,7 @@ function Footer() {
                 </ul>
             </div>
             <div className="griditem-6">
-                <p>© 2022 Kenny Merizalde. Todos los derechos reservados. </p>
+                <p>Desarrollado por Kenny Merizalde.  </p>
             </div>
         </div>
     </>

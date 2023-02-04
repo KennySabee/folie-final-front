@@ -14,6 +14,12 @@ export const UserProvider = ({ children }) => {
     password: '',
 
   })
+  const [userData, setUserData] = useState({
+    name: '',
+    email: '',
+  })
+  const [editMode, setEditMode] = useState(false)
+
 
   const handleChange = (event) => {
     event.preventDefault()
@@ -23,9 +29,16 @@ export const UserProvider = ({ children }) => {
     })
   }
 
+  const handleChangeUpdate = (event)=>{
+    event.preventDefault()
+    setUserData({ 
+      ...userData,
+      [event.target.name]: event.target.value, })
+  }
+
   const registerUser = async (dataForm) => {
     try {
-      const res = await clienteAxios.post('/customers/signup', dataForm)
+      const res = await clienteAxios.post('/customers/create', dataForm)
       // localStorage.setItem('token', res.data.token)
       // setAuthStatus(true)
       setSuccess(true)
@@ -91,17 +104,22 @@ export const UserProvider = ({ children }) => {
     handleChange, 
     verifyingToken, 
     logout, 
+    setSuccess,
+    setError,
+    setUser,
+    updateUser,
+    setUserData,
+    handleChangeUpdate,
+    setEditMode,
     formData, 
     user, 
     authStatus, 
     success,
     error,
-    setSuccess,
-    setError,
-    setUser,
-    updateUser,
+    editMode, 
+    userData, 
+    
   }
-  console.log('User Context', data)
   return <UserContext.Provider value={data}>{children}</UserContext.Provider>
 }
 

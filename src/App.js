@@ -11,6 +11,7 @@ import Checkout from './components/pages/Checkout'
 import NoPage from './components/pages/NoPage'
 import Product from './components/shared/Product'
 import PrivateRoute from './components/auth/PrivateRoute'
+import React, { useContext, useEffect } from 'react'
 
 function App() {
   return (

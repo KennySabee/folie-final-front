@@ -8,33 +8,11 @@ export const AppProvider = ({ children }) => {
   const [success, setSuccess] = useState(false)
   const [ok, setOk] = useState(false)
   const [oneProduct, setOneProduct] = useState({})
-  const [cart, setCart]= useState([])
-
-  const addItemToCart = (product)=>{
-
-    !product.quantity && (product.quantity=1)
-    const productInCart = cart.find((item)=> item.id === product.id);
-    console.log('SE ENCONTRO EL PRODUCTO EN EL CARRITO',productInCart)
-    if(productInCart){
-      const newCart = cart.map((item)=>{
-        if(item.id === product.id){
-          return{
-            ...item,
-            quantity: item.quantity + 1,
-          };
-        }
-        return item;
-      })
-      setCart(newCart);
-      return;
-    }
-    setCart([...cart, product]);
-  }
 
   const getProduct = async () => {
     try {
-      const res = await clienteAxios.get('/products/list')
-      setProduct(res.data.Products)
+      const res = await clienteAxios.get('/shopping/list')
+      setProduct(res.data.Shopping)
       setSuccess(true)
 
     } catch (error) {
@@ -44,13 +22,15 @@ export const AppProvider = ({ children }) => {
 
   const getId = async (customerId) => {
     try {
-      const res = await clienteAxios.get(`/products/list/${customerId}`)
+      const res = await clienteAxios.get(`/shopping/list/${customerId}`)
       setOneProduct(res.data)
       setOk(true)
     } catch (error) {
       console.log(error)
     }
   }
+
+ 
 
 
   const data = {
@@ -63,13 +43,9 @@ export const AppProvider = ({ children }) => {
     oneProduct,
     setOneProduct,
     ok, 
-    setOk,
-    cart,
-    setCart,
-    addItemToCart
+    setOk, 
 
   }
 
-  console.log('Contexto', data)
   return <AppContext.Provider value={data}>{children}</AppContext.Provider>
 }
