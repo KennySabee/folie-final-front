@@ -5,6 +5,7 @@ import ShowProducts from './ShowProducts';
 
 function Catalog() {
   const productCtx =  useContext(AppContext)
+  console.log(productCtx)
   const { product, getProduct, success, getId } = productCtx
 
   useEffect(() => {
@@ -14,14 +15,15 @@ function Catalog() {
   return (
     <>
        <h2 className='page-subtitle'>Nuestros Productos</h2>
-      <p className='page-subtitle'>Entre nuestras colecciones encontrarás desde los estilos más sofisticados hasta los más urbanos.</p>
+      <p className='page-subtitle'>Entre nuestras colecciones encontrarás desde los estilos tailandeses más tradicionales hasta los más modernos.</p>
 
       <div className='product-container' fluid="md">
 
-        {success ? (
+        {/* {success ? (
           <ShowProducts products={product} isCatalog={true}/>
         )
-          : null}
+          : null} */}
+          <ShowProducts products={product} isCatalog={true}/>
 
 
       </div>

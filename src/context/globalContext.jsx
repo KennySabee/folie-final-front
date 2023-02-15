@@ -11,8 +11,11 @@ export const AppProvider = ({ children }) => {
 
   const getProduct = async () => {
     try {
-      const res = await clienteAxios.get('/shopping/list')
-      setProduct(res.data.Shopping)
+
+      // si no añado el folie final front me da errores? y no se carga lña pag queda en blanco
+      const res = await clienteAxios.get('/products/list')
+      console.log('123')
+      setProduct(res.data.products)
       setSuccess(true)
 
     } catch (error) {
@@ -22,7 +25,7 @@ export const AppProvider = ({ children }) => {
 
   const getId = async (customerId) => {
     try {
-      const res = await clienteAxios.get(`/shopping/list/${customerId}`)
+      const res = await clienteAxios.get(`/list/${customerId}`)
       setOneProduct(res.data)
       setOk(true)
     } catch (error) {

@@ -28,7 +28,7 @@ function Product() {
         <Container fluid="md" >
           <Row className="justify-content-md-center">
             <Col sm={6}>{
-              ok ? (<img src={oneProduct.Shopping.img} className="img-fluid" alt={oneProduct.Shopping.name} />)
+              ok ? (<img src={oneProduct.singleProduct.img} className="img-fluid" alt={oneProduct.singleProduct.name} />)
                 : null}
 
           </Col>
