@@ -1,17 +1,18 @@
-
 import './App.css';
-import {Routes, Route} from 'react-router-dom'
-import Layout from './components/shared/Layout'
-import Home from './components/pages/Home'
-import Profile from './components/pages/Profile'
-import Login from './components/pages/Login'
-import Register from './components/pages/Register'
-import Catalog from './components/pages/Catalog'
-import Checkout from './components/pages/Checkout'
-import NoPage from './components/pages/NoPage'
-import Product from './components/shared/Product'
-import PrivateRoute from './components/auth/PrivateRoute'
+
 import React, { useContext, useEffect } from 'react'
+import {Route, Routes} from 'react-router-dom'
+
+import Catalog from './Components/pages/Catalog'
+import Checkout from './Components/pages/Checkout'
+import Home from './Components/pages/Home'
+import Layout from './Components/shared/Layout'
+import Login from './Components/pages/Login'
+import NoPage from './Components/pages/NoPage'
+import PrivateRoute from './Components/Auth/PrivateRoute'
+import Product from './Components/shared/Product'
+import Profile from './Components/pages/Profile'
+import Register from './Components/pages/Register'
 
 function App() {
   return (

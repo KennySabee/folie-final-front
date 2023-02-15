@@ -1,6 +1,6 @@
+import { Navigate, Outlet } from 'react-router-dom'
 import React, { useContext, useEffect } from 'react'
 
-import { Navigate, Outlet } from 'react-router-dom'
 import { UserContext } from '../../context/userContext'
 
 export default function PrivateRoute() {
